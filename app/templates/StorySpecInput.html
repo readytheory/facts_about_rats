@@ -1,0 +1,27 @@
+{% block content %}
+    <h1>search the news</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.search_string.label }}<br>
+            {{ form.search_string(size=32) }}
+        </p>
+        <p>
+            {{ form.date_spec_start.label }}<br>
+            {{ form.date_spec_start(size=32) }}
+        </p>
+        <p>
+            {{ form.date_spec_end.label }}<br>
+            {{ form.date_spec_end(size=32) }}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+	<div>
+	  <UL>
+	  <h2>Prior results</h2>
+	  {% for dick in session.prior_results %}
+	  <LI>{{dick.title}} from {{dick.provider['name']}} -- {{dick.datePublished}}</LI>
+	  {% endfor %}
+	  </UL>
+    </form>
+{% endblock %}
